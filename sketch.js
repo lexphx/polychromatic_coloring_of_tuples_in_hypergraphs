@@ -19,17 +19,25 @@ let cur_cols = Array(k).fill(false);
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
+  controlsDiv = createDiv();
+  controlsDiv.style("position", "fixed");
+  controlsDiv.style("top", "10px");
+  controlsDiv.style("right", "10px");
+  controlsDiv.style("display", "flex");
+  controlsDiv.style("gap", "8px");
   kSel = createSelect();
   k_choice.forEach((v) => kSel.option(v));
   kSel.selected(k);
-  kSel.position(windowWidth - kSel.width - 20, 10);
+  //kSel.position(windowWidth - kSel.width - 20, 10);
+  kSel.parent(controlsDiv);
   pts = generateRandomPoints(cpts);
   ptsInpt = createInput(cpts);
   ptsInpt.attribute("type", "number");
   ptsInpt.attribute("min", 5);
   ptsInpt.attribute("max", 200);
   ptsInpt.size(40);
-  ptsInpt.position(windowWidth - ptsInpt.width - 50, 10);
+  //ptsInpt.position(windowWidth - ptsInpt.width - 50, 10);
+  ptsInpt.parent(controlsDiv);
   ptsInpt.changed(() => {
     const n = int(ptsInpt.value());
     pts = generateRandomPoints(n);
